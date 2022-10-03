@@ -1,5 +1,24 @@
 <?php
 
+interface LoggerInterface //Интерфейс логирования.
+{
+    public function logMessage($errorText);//Записать сообщения в лог. На вход текст ошибки.
+
+    public function lastMessages($numOfMessages): array;//Получить список последних сообщений из лога
+    // На вход количество, сообщений, которые необходимо получить. Возвращает массив сообщений
+}
+
+interface EventListenerInterface//Интерфейс для обработки событий
+{
+    public function attachEvent($methodName, $function);//Присвоить событию обработчик
+    //На вход имя метода класса, при выполнении которого он должен быть вызван и колбек функцию, которая вызывается
+    //при возникновении события
+
+    public function detouchEvent($methodName);//Убрать обработчик события. Приенимает на вход имя метода класа,
+    //при выполнении которого вызывается обработчик события
+
+}
+
 
 class TelegraphText
 {
@@ -137,8 +156,9 @@ class FileStorage extends Storage // Метод серриализует и за
 }
 
 //--------------------------------------------------------------------------
-$text = new TelegraphText('ilya', 'test');
-$text->editText('testTitle', 'swlihsliuhfwleihfliwuhfwleiuhfliwuhfliwuhfwleihf');
+//$text = new TelegraphText('ilya', 'test');
+//$text->editText('testTitle', 'swlihsliuhfwleihfliwuhfwleiuhfliwuhfliwuhfwleihf');
+//
+//$testStore = new FileStorage();
+//$testStore->create($text);
 
-$testStore = new FileStorage();
-$testStore->create($text);
